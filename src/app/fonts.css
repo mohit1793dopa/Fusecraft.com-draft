@@ -1,0 +1,29 @@
+/* GT Walsheim Trial — primary typeface (brand guidelines)
+   Loaded from CDN for Regular, Medium, Bold (non-condensed). */
+
+@font-face {
+  font-family: "GT Walsheim Trial";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://fonts.cdnfonts.com/s/105002/GT-Walsheim-Regular-Trial-BF651b7fc71a47d.woff")
+    format("woff");
+}
+
+@font-face {
+  font-family: "GT Walsheim Trial";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("https://fonts.cdnfonts.com/s/105002/GT-Walsheim-Medium-Trial-BF651b7fc728fb3.woff")
+    format("woff");
+}
+
+@font-face {
+  font-family: "GT Walsheim Trial";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://fonts.cdnfonts.com/s/105002/GT-Walsheim-Bold-Trial-BF651b7fc737c57.woff")
+    format("woff");
+}
