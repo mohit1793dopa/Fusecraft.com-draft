@@ -17,11 +17,11 @@ export function CollaboratorsBand() {
             <div>
               <p className="eyebrow text-mocha">Collaborators</p>
               <h2 className="type-headline mt-2 max-w-xl text-2xl md:text-3xl lg:text-4xl">
-                Studios who share the standard.
+                Partners who share the standard.
               </h2>
             </div>
             <p className="type-annotation max-w-sm md:text-right">
-              Architects, interior designers, and agencies we enter early with.
+              Furniture, finishes, stone, lighting, and wall specialists we build with.
             </p>
           </div>
         </Reveal>
@@ -44,31 +44,50 @@ export function CollaboratorsBand() {
               : "collab-marquee flex w-max gap-3 md:gap-4"
           }
         >
-          {(reduce ? collaborators : loop).map((studio, i) => (
-            <article
-              key={`${studio.name}-${i}`}
-              className="group w-[200px] shrink-0 overflow-hidden bg-cream sm:w-[220px] md:w-[240px]"
-            >
-              <div className="relative aspect-[4/5] overflow-hidden bg-almond">
-                <Image
-                  src={studio.image}
-                  alt={studio.name}
-                  fill
-                  sizes="240px"
-                  quality={70}
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-              <div className="px-3.5 py-3.5 md:px-4 md:py-4">
-                <p className="text-[0.58rem] tracking-[0.16em] text-mocha/50 uppercase">
-                  {studio.role}
-                </p>
-                <h3 className="mt-1 font-display text-base font-medium text-ink md:text-lg">
-                  {studio.name}
-                </h3>
-              </div>
-            </article>
-          ))}
+          {(reduce ? collaborators : loop).map((studio, i) => {
+            const href = "href" in studio ? studio.href : undefined;
+            const card = (
+              <>
+                <div className="relative aspect-[4/5] overflow-hidden bg-almond">
+                  <Image
+                    src={studio.image}
+                    alt={`${studio.name} logo`}
+                    fill
+                    sizes="240px"
+                    quality={80}
+                    className="object-contain p-6 transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <div className="px-3.5 py-3.5 md:px-4 md:py-4">
+                  <p className="text-[0.58rem] tracking-[0.16em] text-mocha/50 uppercase">
+                    {studio.role}
+                  </p>
+                  <h3 className="mt-1 font-display text-base font-medium text-ink md:text-lg">
+                    {studio.name}
+                  </h3>
+                </div>
+              </>
+            );
+
+            const className =
+              "group w-[200px] shrink-0 overflow-hidden bg-cream sm:w-[220px] md:w-[240px]";
+
+            return href ? (
+              <a
+                key={`${studio.name}-${i}`}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${className} block transition-opacity hover:opacity-90`}
+              >
+                {card}
+              </a>
+            ) : (
+              <article key={`${studio.name}-${i}`} className={className}>
+                {card}
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

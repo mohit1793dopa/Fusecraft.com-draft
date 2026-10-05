@@ -289,7 +289,22 @@ async function ingestCategory(cat) {
     ? `/images/browse-by-craft/${coverBrowse.out}`
     : bySub.values().next().value?.[0]?.main || "";
 
-  const subcategories = [...bySub.entries()].map(([title, designs]) => ({
+  /** Preferred filter order for category chips (unlisted titles keep discovery order). */
+  const SUBCATEGORY_ORDER = {
+    chairs: ["dining and cafe chairs", "lounge chairs", "benches"],
+  };
+
+  const preferred = SUBCATEGORY_ORDER[cat.slug] ?? [];
+  const entries = [...bySub.entries()].sort(([a], [b]) => {
+    const ia = preferred.indexOf(a.toLowerCase());
+    const ib = preferred.indexOf(b.toLowerCase());
+    if (ia === -1 && ib === -1) return 0;
+    if (ia === -1) return 1;
+    if (ib === -1) return -1;
+    return ia - ib;
+  });
+
+  const subcategories = entries.map(([title, designs]) => ({
     slug: slugify(title),
     title: title === "All" ? "All designs" : titleize(title),
     designs,

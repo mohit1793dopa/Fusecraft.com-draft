@@ -327,3 +327,29 @@ body {
     animation: none;
   }
 }
+
+/* Project detail catalog — linear left → right loop */
+@keyframes catalog-marquee {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.catalog-marquee {
+  animation-name: catalog-marquee;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.catalog-marquee-mask:hover .catalog-marquee {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .catalog-marquee {
+    animation: none;
+  }
+}

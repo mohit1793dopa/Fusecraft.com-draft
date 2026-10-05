@@ -1,0 +1,94 @@
+{
+  "matra-cafe": {
+    "slug": "matra-cafe",
+    "cover": "/images/project-media/matra-cafe/cover.jpg",
+    "gallery": [
+      "/images/project-media/matra-cafe/01.jpg",
+      "/images/project-media/matra-cafe/02.jpg",
+      "/images/project-media/matra-cafe/03.jpg",
+      "/images/project-media/matra-cafe/04.jpg",
+      "/images/project-media/matra-cafe/05.jpg",
+      "/images/project-media/matra-cafe/06.jpg"
+    ],
+    "catalog": [
+      "/images/project-media/matra-cafe/catalog/01.jpg",
+      "/images/project-media/matra-cafe/catalog/02.jpg",
+      "/images/project-media/matra-cafe/catalog/03.jpg",
+      "/images/project-media/matra-cafe/catalog/04.jpg",
+      "/images/project-media/matra-cafe/catalog/05.jpg",
+      "/images/project-media/matra-cafe/catalog/06.jpg"
+    ]
+  },
+  "akbr-residence": {
+    "slug": "akbr-residence",
+    "cover": "/images/project-media/akbr-residence/cover.jpg",
+    "gallery": [
+      "/images/project-media/akbr-residence/01.jpg",
+      "/images/project-media/akbr-residence/02.jpg",
+      "/images/project-media/akbr-residence/03.jpg",
+      "/images/project-media/akbr-residence/04.jpg",
+      "/images/project-media/akbr-residence/05.jpg",
+      "/images/project-media/akbr-residence/06.jpg"
+    ],
+    "catalog": [
+      "/images/project-media/akbr-residence/catalog/01.jpg",
+      "/images/project-media/akbr-residence/catalog/02.jpg",
+      "/images/project-media/akbr-residence/catalog/03.jpg",
+      "/images/project-media/akbr-residence/catalog/04.jpg",
+      "/images/project-media/akbr-residence/catalog/05.jpg",
+      "/images/project-media/akbr-residence/catalog/06.jpg",
+      "/images/project-media/akbr-residence/catalog/07.jpg",
+      "/images/project-media/akbr-residence/catalog/08.jpg"
+    ]
+  },
+  "fc-clap": {
+    "slug": "fc-clap",
+    "cover": "/images/project-media/fc-clap/cover.jpg",
+    "gallery": [
+      "/images/project-media/fc-clap/01.jpg",
+      "/images/project-media/fc-clap/02.jpg"
+    ],
+    "catalog": [
+      "/images/project-media/fc-clap/catalog/01.jpg",
+      "/images/project-media/fc-clap/catalog/02.jpg",
+      "/images/project-media/fc-clap/catalog/03.jpg",
+      "/images/project-media/fc-clap/catalog/04.jpg",
+      "/images/project-media/fc-clap/catalog/05.jpg"
+    ]
+  },
+  "riwayat-fine-dining": {
+    "slug": "riwayat-fine-dining",
+    "cover": "/images/project-media/riwayat-fine-dining/cover.jpg",
+    "gallery": [
+      "/images/project-media/riwayat-fine-dining/01.jpg",
+      "/images/project-media/riwayat-fine-dining/02.jpg"
+    ],
+    "catalog": [
+      "/images/project-media/riwayat-fine-dining/catalog/01.jpg",
+      "/images/project-media/riwayat-fine-dining/catalog/02.jpg",
+      "/images/project-media/riwayat-fine-dining/catalog/03.jpg"
+    ]
+  },
+  "fidvi-residence": {
+    "slug": "fidvi-residence",
+    "cover": "/images/project-media/fidvi-residence/cover.jpg",
+    "gallery": [
+      "/images/project-media/fidvi-residence/01.jpg",
+      "/images/project-media/fidvi-residence/02.jpg",
+      "/images/project-media/fidvi-residence/03.jpg",
+      "/images/project-media/fidvi-residence/04.jpg",
+      "/images/project-media/fidvi-residence/05.jpg",
+      "/images/project-media/fidvi-residence/06.jpg"
+    ],
+    "catalog": [
+      "/images/project-media/fidvi-residence/catalog/01.jpg",
+      "/images/project-media/fidvi-residence/catalog/02.jpg",
+      "/images/project-media/fidvi-residence/catalog/03.jpg",
+      "/images/project-media/fidvi-residence/catalog/04.jpg",
+      "/images/project-media/fidvi-residence/catalog/05.jpg",
+      "/images/project-media/fidvi-residence/catalog/06.jpg",
+      "/images/project-media/fidvi-residence/catalog/07.jpg",
+      "/images/project-media/fidvi-residence/catalog/08.jpg"
+    ]
+  }
+}

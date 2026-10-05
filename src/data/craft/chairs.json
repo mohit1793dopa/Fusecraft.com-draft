@@ -5,30 +5,6 @@
   "href": "/craft/chairs",
   "subcategories": [
     {
-      "slug": "benches",
-      "title": "Benches",
-      "designs": [
-        {
-          "slug": "anguar-metal-wood-beench",
-          "title": "Angular Metal Wood Bench",
-          "main": "/images/craft/chairs/anguar-metal-wood-beench/main.jpg",
-          "images": [
-            "/images/craft/chairs/anguar-metal-wood-beench/main.jpg",
-            "/images/craft/chairs/anguar-metal-wood-beench/01.jpg"
-          ]
-        },
-        {
-          "slug": "wooden-outdoor-bench",
-          "title": "Wooden Outdoor Bench",
-          "main": "/images/craft/chairs/wooden-outdoor-bench/main.jpg",
-          "images": [
-            "/images/craft/chairs/wooden-outdoor-bench/main.jpg",
-            "/images/craft/chairs/wooden-outdoor-bench/01.jpg"
-          ]
-        }
-      ]
-    },
-    {
       "slug": "dining-and-cafe-chairs",
       "title": "Dining And Cafe Chairs",
       "designs": [
@@ -114,6 +90,30 @@
           "images": [
             "/images/craft/chairs/ornage-laonge-chair/main.jpg",
             "/images/craft/chairs/ornage-laonge-chair/01.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "benches",
+      "title": "Benches",
+      "designs": [
+        {
+          "slug": "anguar-metal-wood-beench",
+          "title": "Angular Metal Wood Bench",
+          "main": "/images/craft/chairs/anguar-metal-wood-beench/main.jpg",
+          "images": [
+            "/images/craft/chairs/anguar-metal-wood-beench/main.jpg",
+            "/images/craft/chairs/anguar-metal-wood-beench/01.jpg"
+          ]
+        },
+        {
+          "slug": "wooden-outdoor-bench",
+          "title": "Wooden Outdoor Bench",
+          "main": "/images/craft/chairs/wooden-outdoor-bench/main.jpg",
+          "images": [
+            "/images/craft/chairs/wooden-outdoor-bench/main.jpg",
+            "/images/craft/chairs/wooden-outdoor-bench/01.jpg"
           ]
         }
       ]
