@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 /* ── the corridor ────────────────────────────────────────────────
@@ -56,10 +55,10 @@ const PATH: Required<CorridorPath> = {
   exitHeight: 44,
   railBirth: -11,
   railExit: 42,
-  fan: 3.3,
-  turnBirth: 6,
-  turnExit: 28,
-  stops: 24,
+  fan: 2.8,
+  turnBirth: 5,
+  turnExit: 24,
+  stops: 48,
 };
 
 /** Sample the path once so the CSS keyframes trace the real curve. */
@@ -75,9 +74,9 @@ function keyframes(dir: 1 | -1, name: string, p: Required<CorridorPath>) {
       p.railExit - (p.railExit - p.railBirth) * Math.pow(1 - u, p.fan);
     const turn = p.turnBirth + (p.turnExit - p.turnBirth) * u;
     steps.push(
-      `${(u * 100).toFixed(2)}%{transform:translate3d(${(dir * rail).toFixed(
-        2,
-      )}cqw,0,${z.toFixed(2)}cqw) rotateY(${(-dir * turn).toFixed(2)}deg)}`,
+      `${(u * 100).toFixed(3)}%{transform:translate3d(${(dir * rail).toFixed(
+        3,
+      )}cqw,0,${z.toFixed(3)}cqw) rotateY(${(-dir * turn).toFixed(3)}deg)}`,
     );
   }
   return `@keyframes ${name}{${steps.join("")}}`;
@@ -138,6 +137,7 @@ export function ImageStreamHero({
   const css = React.useMemo(
     () =>
       `${keyframes(1, right, p)}${keyframes(-1, left, p)}` +
+      `.${card}{will-change:transform;transform:translateZ(0);backface-visibility:hidden;-webkit-backface-visibility:hidden}` +
       `@media(prefers-reduced-motion:reduce){.${card}{animation-play-state:paused}}`,
     [right, left, card, p],
   );
@@ -162,13 +162,22 @@ export function ImageStreamHero({
           className="absolute inset-0"
           style={{ transformStyle: "preserve-3d" }}
         >
-          {[right, left].map((name) =>
+          {[right, left].map((name, rail) =>
             Array.from({ length: cards }, (_, i) => {
-              const img = images[i % Math.max(images.length, 1)];
+              // Spread the full gallery across slots; offset the left rail
+              // so both sides don't show identical neighbors at the same depth.
+              const img =
+                images[
+                  (i + (rail === 1 ? Math.floor(images.length / 2) : 0)) %
+                    Math.max(images.length, 1)
+                ];
               return (
                 <div
                   key={`${name}-${i}`}
-                  className={cn(card, "absolute overflow-hidden [transform-style:preserve-3d]")}
+                  className={cn(
+                    card,
+                    "absolute overflow-hidden [transform-style:preserve-3d]",
+                  )}
                   style={{
                     left: "50%",
                     top: `${axis}%`,
@@ -178,22 +187,25 @@ export function ImageStreamHero({
                     marginTop: `${-p.cardHeight / 2}cqw`,
                     borderRadius: `${p.cardRadius}cqw`,
                     animation: `${name} ${speed}s linear infinite`,
-                    animationDelay: `${-(i * speed) / cards}s`,
-                    backfaceVisibility: "hidden",
+                    animationDelay: `${-((i * speed) / cards).toFixed(4)}s`,
+                    contain: "layout style paint",
                   }}
                 >
-                  <div className="absolute inset-0">
+                  <div className="absolute inset-0 overflow-hidden bg-almond">
                     {img ? (
-                      <Image
+                      // Native img — next/image wrappers break under CSS 3D transforms
+                      // and can flash broken-image + alt text in the corridor.
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
                         src={img.src.replace(/\?.*$/, "")}
-                        alt={img.alt ?? ""}
-                        fill
-                        sizes="(max-width: 768px) 28vw, 14vw"
-                        quality={70}
-                        loading={i < 2 ? "eager" : "lazy"}
-                        priority={i === 0 && name === right}
+                        alt=""
                         draggable={false}
-                        className="object-cover object-center"
+                        loading="eager"
+                        decoding="async"
+                        className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+                        onError={(e) => {
+                          e.currentTarget.style.visibility = "hidden";
+                        }}
                       />
                     ) : null}
                   </div>

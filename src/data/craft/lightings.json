@@ -1,0 +1,25 @@
+{
+  "slug": "lightings",
+  "title": "Lightings",
+  "cover": "/images/browse-by-craft/lightings.jpg",
+  "href": "/craft/lightings",
+  "subcategories": [
+    {
+      "slug": "ceiling-chandelier",
+      "title": "Ceiling Chandelier",
+      "designs": [
+        {
+          "slug": "wiremesh-chandilier",
+          "title": "Wiremesh chandelier",
+          "main": "/images/craft/lightings/wiremesh-chandilier/main.jpg",
+          "images": [
+            "/images/craft/lightings/wiremesh-chandilier/main.jpg",
+            "/images/craft/lightings/wiremesh-chandilier/01.jpg",
+            "/images/craft/lightings/wiremesh-chandilier/02.jpg",
+            "/images/craft/lightings/wiremesh-chandilier/03.jpg"
+          ]
+        }
+      ]
+    }
+  ]
+}

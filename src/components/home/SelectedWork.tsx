@@ -17,8 +17,8 @@ export function SelectedWork() {
                 Pieces resolved for the rooms they belong to.
               </h2>
             </div>
-            <Link href="/work" className="btn-ghost text-chestnut">
-              View all work
+            <Link href="/craft/beds" className="btn-ghost text-chestnut">
+              Browse collections
             </Link>
           </div>
         </Reveal>
@@ -33,7 +33,7 @@ export function SelectedWork() {
 
             return (
               <Reveal key={work.slug} delay={i * 0.08} className={span}>
-                <Link href={`/work#${work.discipline}`} className="group block">
+                <Link href={work.href} className="group block">
                   <ParallaxImage
                     src={work.image}
                     alt={work.title}

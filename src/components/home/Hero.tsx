@@ -6,24 +6,18 @@ import { BrandLogo } from "@/components/BrandLogo";
 import { ImageStreamHero } from "@/components/ui/image-stream-hero";
 import { brand } from "@/data/site";
 
-/** Studio photography — portrait 3:4 crops from /public/images/hero */
+/** Studio photography — portrait crops from /public/images/hero (h1–h10) */
 const STREAM_IMAGES = [
-  { src: "/images/hero/hero-01.jpg", alt: "Fusecrafts detail" },
-  { src: "/images/hero/hero-02.jpg", alt: "Fusecrafts interior" },
-  { src: "/images/hero/hero-03.jpg", alt: "Fusecrafts piece" },
-  { src: "/images/hero/hero-04.jpg", alt: "Fusecrafts detail work" },
-  { src: "/images/hero/hero-05.jpg", alt: "Fusecrafts craft detail" },
-  { src: "/images/hero/hero-06.jpg", alt: "Fusecrafts furniture" },
-  { src: "/images/hero/hero-07.jpg", alt: "Fusecrafts seating" },
-  { src: "/images/hero/hero-08.jpg", alt: "Fusecrafts room" },
-  { src: "/images/hero/hero-09.jpg", alt: "Fusecrafts joinery" },
-  { src: "/images/hero/hero-10.jpg", alt: "Fusecrafts study" },
-  { src: "/images/hero/hero-11.jpg", alt: "Fusecrafts material" },
-  { src: "/images/hero/hero-12.jpg", alt: "Fusecrafts workshop" },
-  { src: "/images/hero/hero-13.jpg", alt: "Fusecrafts project" },
-  { src: "/images/hero/hero-14.jpg", alt: "Fusecrafts finish" },
-  { src: "/images/hero/hero-15.jpg", alt: "Fusecrafts space" },
-  { src: "/images/hero/hero-16.jpg", alt: "Fusecrafts composition" },
+  { src: "/images/hero/h1.jpg", alt: "" },
+  { src: "/images/hero/h2.jpg", alt: "" },
+  { src: "/images/hero/h3.jpg", alt: "" },
+  { src: "/images/hero/h4.jpg", alt: "" },
+  { src: "/images/hero/h5.jpg", alt: "" },
+  { src: "/images/hero/h6.jpg", alt: "" },
+  { src: "/images/hero/h7.jpg", alt: "" },
+  { src: "/images/hero/h8.jpg", alt: "" },
+  { src: "/images/hero/h9.jpg", alt: "" },
+  { src: "/images/hero/h10.jpg", alt: "" },
 ];
 
 export function Hero() {
@@ -32,8 +26,8 @@ export function Hero() {
   return (
     <ImageStreamHero
       images={STREAM_IMAGES}
-      cards={9}
-      speed={22}
+      cards={STREAM_IMAGES.length}
+      speed={32}
       axis={52}
       className="min-h-[100svh] w-full bg-cream-soft"
       path={{
@@ -41,8 +35,11 @@ export function Hero() {
         cardHeight: 22,
         cardRadius: 0.5,
         birthHeight: 2.3,
-        exitHeight: 44,
-        railExit: 40,
+        exitHeight: 42,
+        railExit: 38,
+        fan: 2.8,
+        turnExit: 22,
+        stops: 56,
       }}
     >
       <h1 className="sr-only">{brand.name}</h1>

@@ -43,7 +43,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         <div className="absolute inset-x-0 bottom-0 px-5 pb-10 md:px-8 md:pb-14">
           <div className="mx-auto max-w-[1440px]">
             <p className="text-[0.65rem] tracking-[0.2em] text-sand/55 uppercase">
-              Project · {project.label}
+              Project · {project.tag}
             </p>
             <h1 className="mt-3 font-display text-4xl font-medium tracking-tight text-sand md:text-6xl lg:text-7xl">
               {project.title}

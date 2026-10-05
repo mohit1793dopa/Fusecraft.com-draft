@@ -1,0 +1,122 @@
+{
+  "slug": "chairs",
+  "title": "Chairs",
+  "cover": "/images/browse-by-craft/chairs.jpg",
+  "href": "/craft/chairs",
+  "subcategories": [
+    {
+      "slug": "benches",
+      "title": "Benches",
+      "designs": [
+        {
+          "slug": "anguar-metal-wood-beench",
+          "title": "Angular Metal Wood Bench",
+          "main": "/images/craft/chairs/anguar-metal-wood-beench/main.jpg",
+          "images": [
+            "/images/craft/chairs/anguar-metal-wood-beench/main.jpg",
+            "/images/craft/chairs/anguar-metal-wood-beench/01.jpg"
+          ]
+        },
+        {
+          "slug": "wooden-outdoor-bench",
+          "title": "Wooden Outdoor Bench",
+          "main": "/images/craft/chairs/wooden-outdoor-bench/main.jpg",
+          "images": [
+            "/images/craft/chairs/wooden-outdoor-bench/main.jpg",
+            "/images/craft/chairs/wooden-outdoor-bench/01.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "dining-and-cafe-chairs",
+      "title": "Dining And Cafe Chairs",
+      "designs": [
+        {
+          "slug": "dining-chairs",
+          "title": "Dining Chairs",
+          "main": "/images/craft/chairs/dining-chairs/main.jpg",
+          "images": [
+            "/images/craft/chairs/dining-chairs/main.jpg",
+            "/images/craft/chairs/dining-chairs/01.jpg",
+            "/images/craft/chairs/dining-chairs/02.jpg"
+          ]
+        },
+        {
+          "slug": "fc-clap-red-black-chair",
+          "title": "FC Clap — Red Black Chair",
+          "main": "/images/craft/chairs/fc-clap-red-black-chair/main.jpg",
+          "images": [
+            "/images/craft/chairs/fc-clap-red-black-chair/main.jpg",
+            "/images/craft/chairs/fc-clap-red-black-chair/01.jpg",
+            "/images/craft/chairs/fc-clap-red-black-chair/02.jpg"
+          ]
+        },
+        {
+          "slug": "fc-clap-red-white-chair",
+          "title": "FC Clap — Red White Chair",
+          "main": "/images/craft/chairs/fc-clap-red-white-chair/main.jpg",
+          "images": [
+            "/images/craft/chairs/fc-clap-red-white-chair/main.jpg",
+            "/images/craft/chairs/fc-clap-red-white-chair/01.jpg",
+            "/images/craft/chairs/fc-clap-red-white-chair/02.jpg"
+          ]
+        },
+        {
+          "slug": "fc-clap-table-red-white-chair",
+          "title": "FC Clap — Table Red White Chair",
+          "main": "/images/craft/chairs/fc-clap-table-red-white-chair/main.jpg",
+          "images": [
+            "/images/craft/chairs/fc-clap-table-red-white-chair/main.jpg",
+            "/images/craft/chairs/fc-clap-table-red-white-chair/01.jpg",
+            "/images/craft/chairs/fc-clap-table-red-white-chair/02.jpg"
+          ]
+        },
+        {
+          "slug": "fc-filter",
+          "title": "FC Filter",
+          "main": "/images/craft/chairs/fc-filter/main.jpg",
+          "images": [
+            "/images/craft/chairs/fc-filter/main.jpg",
+            "/images/craft/chairs/fc-filter/01.jpg",
+            "/images/craft/chairs/fc-filter/02.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "lounge-chairs",
+      "title": "Lounge Chairs",
+      "designs": [
+        {
+          "slug": "maroon-chair",
+          "title": "Maroon Chair",
+          "main": "/images/craft/chairs/maroon-chair/main.jpg",
+          "images": [
+            "/images/craft/chairs/maroon-chair/main.jpg"
+          ]
+        },
+        {
+          "slug": "olive-lounge-chair",
+          "title": "Olive Lounge Chair",
+          "main": "/images/craft/chairs/olive-lounge-chair/main.jpg",
+          "images": [
+            "/images/craft/chairs/olive-lounge-chair/main.jpg",
+            "/images/craft/chairs/olive-lounge-chair/01.jpg",
+            "/images/craft/chairs/olive-lounge-chair/02.jpg",
+            "/images/craft/chairs/olive-lounge-chair/03.jpg"
+          ]
+        },
+        {
+          "slug": "ornage-laonge-chair",
+          "title": "Orange Lounge Chair",
+          "main": "/images/craft/chairs/ornage-laonge-chair/main.jpg",
+          "images": [
+            "/images/craft/chairs/ornage-laonge-chair/main.jpg",
+            "/images/craft/chairs/ornage-laonge-chair/01.jpg"
+          ]
+        }
+      ]
+    }
+  ]
+}

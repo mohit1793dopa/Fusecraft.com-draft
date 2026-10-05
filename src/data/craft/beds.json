@@ -1,0 +1,86 @@
+{
+  "slug": "beds",
+  "title": "Beds",
+  "cover": "/images/browse-by-craft/beds.jpg",
+  "href": "/craft/beds",
+  "subcategories": [
+    {
+      "slug": "all",
+      "title": "All designs",
+      "designs": [
+        {
+          "slug": "bd1",
+          "title": "Bed 01",
+          "main": "/images/craft/beds/bd1/main.jpg",
+          "images": [
+            "/images/craft/beds/bd1/main.jpg",
+            "/images/craft/beds/bd1/01.jpg",
+            "/images/craft/beds/bd1/02.jpg"
+          ]
+        },
+        {
+          "slug": "bd2",
+          "title": "Bed 02",
+          "main": "/images/craft/beds/bd2/main.jpg",
+          "images": [
+            "/images/craft/beds/bd2/main.jpg",
+            "/images/craft/beds/bd2/01.jpg",
+            "/images/craft/beds/bd2/02.jpg",
+            "/images/craft/beds/bd2/03.jpg"
+          ]
+        },
+        {
+          "slug": "bd3",
+          "title": "Bed 03",
+          "main": "/images/craft/beds/bd3/main.jpg",
+          "images": [
+            "/images/craft/beds/bd3/main.jpg",
+            "/images/craft/beds/bd3/01.jpg",
+            "/images/craft/beds/bd3/02.jpg"
+          ]
+        },
+        {
+          "slug": "bd4",
+          "title": "Bed 04",
+          "main": "/images/craft/beds/bd4/main.jpg",
+          "images": [
+            "/images/craft/beds/bd4/main.jpg",
+            "/images/craft/beds/bd4/01.jpg",
+            "/images/craft/beds/bd4/02.jpg",
+            "/images/craft/beds/bd4/03.jpg"
+          ]
+        },
+        {
+          "slug": "bd5",
+          "title": "Bed 05",
+          "main": "/images/craft/beds/bd5/main.jpg",
+          "images": [
+            "/images/craft/beds/bd5/main.jpg",
+            "/images/craft/beds/bd5/01.jpg",
+            "/images/craft/beds/bd5/02.jpg"
+          ]
+        },
+        {
+          "slug": "bd7",
+          "title": "Bed 07",
+          "main": "/images/craft/beds/bd7/main.jpg",
+          "images": [
+            "/images/craft/beds/bd7/main.jpg",
+            "/images/craft/beds/bd7/01.jpg",
+            "/images/craft/beds/bd7/02.jpg",
+            "/images/craft/beds/bd7/03.jpg"
+          ]
+        },
+        {
+          "slug": "bd9",
+          "title": "Bed 09",
+          "main": "/images/craft/beds/bd9/main.jpg",
+          "images": [
+            "/images/craft/beds/bd9/main.jpg",
+            "/images/craft/beds/bd9/01.jpg"
+          ]
+        }
+      ]
+    }
+  ]
+}

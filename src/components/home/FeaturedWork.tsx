@@ -11,7 +11,10 @@ export function FeaturedWork() {
   const featured = works.slice(0, 8);
 
   return (
-    <section className="bg-sand px-5 py-12 md:px-8 md:py-16">
+    <section
+      id="selected-work"
+      className="bg-sand px-5 py-12 md:px-8 md:py-16"
+    >
       <div className="mx-auto max-w-[1440px]">
         <Reveal>
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
@@ -22,8 +25,8 @@ export function FeaturedWork() {
               </h2>
             </div>
             <p className="type-annotation max-w-sm md:text-right">
-              Chairs, seating, tables, and light — pieces finished in the
-              workshop.
+              Beds, chairs, doors, jhula, lightings, partitions, sofa, and
+              tables.
             </p>
           </div>
         </Reveal>
@@ -38,7 +41,7 @@ export function FeaturedWork() {
               transition={{ delay: i * 0.04, duration: 0.5 }}
             >
               <Link
-                href={`/work#${work.discipline}`}
+                href={work.href}
                 className="group relative block aspect-square overflow-hidden rounded-[24px] bg-almond"
               >
                 <Image
@@ -64,8 +67,8 @@ export function FeaturedWork() {
         </div>
 
         <div className="mt-8 text-center">
-          <Link href="/work" className="btn-primary">
-            View all work →
+          <Link href="/craft/beds" className="btn-primary">
+            Browse collections →
           </Link>
         </div>
       </div>

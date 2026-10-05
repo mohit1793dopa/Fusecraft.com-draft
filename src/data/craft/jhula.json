@@ -1,0 +1,24 @@
+{
+  "slug": "jhula",
+  "title": "Jhula",
+  "cover": "/images/browse-by-craft/jhula.jpg",
+  "href": "/craft/jhula",
+  "subcategories": [
+    {
+      "slug": "all",
+      "title": "All designs",
+      "designs": [
+        {
+          "slug": "jhula",
+          "title": "Jhula",
+          "main": "/images/craft/jhula/jhula/main.jpg",
+          "images": [
+            "/images/craft/jhula/jhula/main.jpg",
+            "/images/craft/jhula/jhula/01.jpg",
+            "/images/craft/jhula/jhula/02.jpg"
+          ]
+        }
+      ]
+    }
+  ]
+}

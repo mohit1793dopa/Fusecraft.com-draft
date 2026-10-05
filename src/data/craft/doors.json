@@ -1,0 +1,48 @@
+{
+  "slug": "doors",
+  "title": "Doors",
+  "cover": "/images/browse-by-craft/doors.jpg",
+  "href": "/craft/doors",
+  "subcategories": [
+    {
+      "slug": "all",
+      "title": "All designs",
+      "designs": [
+        {
+          "slug": "entrace-brass-jai-door-ahmed",
+          "title": "Entrance Brass Jai Door Ahmed",
+          "main": "/images/craft/doors/entrace-brass-jai-door-ahmed/main.jpg",
+          "images": [
+            "/images/craft/doors/entrace-brass-jai-door-ahmed/main.jpg",
+            "/images/craft/doors/entrace-brass-jai-door-ahmed/01.jpg",
+            "/images/craft/doors/entrace-brass-jai-door-ahmed/02.jpg",
+            "/images/craft/doors/entrace-brass-jai-door-ahmed/03.jpg",
+            "/images/craft/doors/entrace-brass-jai-door-ahmed/04.jpg"
+          ]
+        },
+        {
+          "slug": "entry-door-fidvi",
+          "title": "Entry Door Fidvi",
+          "main": "/images/craft/doors/entry-door-fidvi/main.jpg",
+          "images": [
+            "/images/craft/doors/entry-door-fidvi/main.jpg",
+            "/images/craft/doors/entry-door-fidvi/01.jpg",
+            "/images/craft/doors/entry-door-fidvi/02.jpg",
+            "/images/craft/doors/entry-door-fidvi/03.jpg"
+          ]
+        },
+        {
+          "slug": "raj-nagar-bunglow-door",
+          "title": "Raj Nagar Bunglow Door",
+          "main": "/images/craft/doors/raj-nagar-bunglow-door/main.jpg",
+          "images": [
+            "/images/craft/doors/raj-nagar-bunglow-door/main.jpg",
+            "/images/craft/doors/raj-nagar-bunglow-door/01.jpg",
+            "/images/craft/doors/raj-nagar-bunglow-door/02.jpg",
+            "/images/craft/doors/raj-nagar-bunglow-door/03.jpg"
+          ]
+        }
+      ]
+    }
+  ]
+}

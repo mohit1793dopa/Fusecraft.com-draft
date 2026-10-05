@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Reveal } from "@/components/motion/Reveal";
-import { ParallaxImage } from "@/components/motion/ParallaxImage";
-import { disciplines, works } from "@/data/site";
+import { craftCategorySummaries } from "@/data/craft-portfolio";
 
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "Selected facade, lighting, furniture, and partition work resolved by Fusecrafts.",
+    "Browse beds, chairs, doors, jhula, lightings, partitions, sofa, and tables from Fusecrafts.",
 };
 
 export default function WorkPage() {
@@ -17,85 +17,46 @@ export default function WorkPage() {
         <Reveal>
           <p className="eyebrow text-mocha">Work</p>
           <h1 className="type-display mt-3 max-w-3xl text-4xl md:text-6xl">
-            Selected pieces from the workshop.
+            Collections from the workshop.
           </h1>
           <p className="type-body mt-5 max-w-xl text-base md:text-lg">
-            Furniture, lighting, partitions, and facade details designed with
-            the architect — tested at full scale, finished by hand.
+            Open a category to see every design — then view the full photo set
+            for each piece.
           </p>
         </Reveal>
 
-        <Reveal className="mt-10 flex flex-wrap gap-x-6 gap-y-3 border-b border-line pb-6">
-          <Link href="/work" className="nav-link text-moss">
-            All
-          </Link>
-          {disciplines.map((d) => (
-            <Link
-              key={d.slug}
-              href={`#${d.slug}`}
-              className="nav-link text-mocha transition-colors hover:text-moss"
-            >
-              {d.title}
-            </Link>
-          ))}
-        </Reveal>
-
-        <div className="mt-14 space-y-20">
-          {disciplines.map((discipline) => {
-            const items = works.filter((w) => w.discipline === discipline.slug);
-            if (items.length === 0) return null;
+        <div className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+          {craftCategorySummaries.map((cat, i) => {
+            const count = cat.designCount;
             return (
-              <section key={discipline.slug} id={discipline.slug}>
-                <Reveal>
-                  <p className="eyebrow text-chestnut">{discipline.title}</p>
-                  <p className="mt-2 max-w-md text-sm text-mocha">
-                    {discipline.note}
-                  </p>
-                </Reveal>
-                <div className="mt-8 grid gap-10 md:grid-cols-2 md:gap-x-6 md:gap-y-14">
-                  {items.map((work, i) => (
-                    <Reveal
-                      key={work.slug}
-                      delay={(i % 2) * 0.08}
-                      className={i % 2 === 1 ? "md:mt-12" : undefined}
-                    >
-                      <article className="group">
-                        <ParallaxImage
-                          src={work.image}
-                          alt={work.title}
-                          className="aspect-[4/5]"
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                        />
-                        <div className="mt-5">
-                          <h2 className="type-headline text-2xl transition-colors group-hover:text-chestnut md:text-3xl">
-                            {work.title}
-                          </h2>
-                          <p className="type-annotation mt-2">{work.materials}</p>
-                          <p className="type-body mt-3 max-w-md text-sm md:text-base">
-                            {work.blurb}
-                          </p>
-                        </div>
-                      </article>
-                    </Reveal>
-                  ))}
-                </div>
-              </section>
+              <Reveal key={cat.slug} delay={(i % 4) * 0.05}>
+                <Link
+                  href={cat.href}
+                  className="group relative block aspect-square overflow-hidden rounded-[24px] bg-almond"
+                >
+                  <Image
+                    src={cat.cover}
+                    alt={cat.title}
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 25vw"
+                    quality={75}
+                    unoptimized
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-moss-ink/80 via-transparent to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-4">
+                    <p className="text-[0.55rem] tracking-[0.14em] text-sand/55 uppercase">
+                      {count} design{count === 1 ? "" : "s"}
+                    </p>
+                    <h2 className="mt-1 font-display text-lg font-medium text-sand md:text-xl">
+                      {cat.title}
+                    </h2>
+                  </div>
+                </Link>
+              </Reveal>
             );
           })}
         </div>
-
-        <Reveal className="mt-20 border-t border-line pt-10">
-          <p className="type-body max-w-lg">
-            Have a facade detail, a fixture, or a piece that needs to belong to
-            the room?
-          </p>
-          <Link
-            href="/contact"
-            className="btn-primary mt-6 inline-flex"
-          >
-            Discuss a commission →
-          </Link>
-        </Reveal>
       </div>
     </main>
   );

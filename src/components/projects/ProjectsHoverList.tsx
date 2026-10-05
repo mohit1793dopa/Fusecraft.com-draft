@@ -41,13 +41,13 @@ export function ProjectsHoverList({
   return (
     <section
       className={cn(
-        "relative overflow-hidden bg-cream px-5 py-12 md:px-8 md:py-16",
+        "relative overflow-hidden bg-cream px-6 py-12 sm:px-8 md:px-12 md:py-16 lg:px-16 xl:px-20",
         className,
       )}
     >
-      <div className="relative mx-auto max-w-[1440px]">
+      <div className="relative mx-auto max-w-[1280px]">
         {showIntro ? (
-          <div className="mb-8 flex flex-col gap-4 md:mb-10 md:flex-row md:items-end md:justify-between">
+          <div className="mb-8 flex flex-col gap-4 md:mb-10 md:flex-row md:items-end md:justify-between md:gap-12">
             <div>
               <p className="eyebrow text-mocha">Projects</p>
               <h2 className="type-headline mt-2 text-2xl md:text-3xl lg:text-4xl">
@@ -55,8 +55,8 @@ export function ProjectsHoverList({
               </h2>
             </div>
             <p className="type-annotation max-w-sm md:text-right">
-              Café, home, workplace, hospitality — furniture and objects
-              resolved to the plan, not the catalogue.
+              Named projects across commercial and residential briefs —
+              furniture and objects resolved to the plan.
             </p>
           </div>
         ) : null}
@@ -68,6 +68,7 @@ export function ProjectsHoverList({
                 key={project.slug}
                 index={index}
                 title={project.title}
+                tag={project.tag}
                 label={project.label}
                 href={`/projects/${project.slug}`}
                 setModal={setModal}
@@ -87,12 +88,14 @@ export function ProjectsHoverList({
 function ProjectRow({
   index,
   title,
+  tag,
   label,
   href,
   setModal,
 }: {
   index: number;
   title: string;
+  tag: string;
   label: string;
   href: string;
   setModal: (value: ModalState) => void;
@@ -100,13 +103,18 @@ function ProjectRow({
   return (
     <Link
       href={href}
-      className="group flex w-full cursor-pointer items-baseline justify-between gap-6 border-t border-line py-4 transition-opacity duration-200 last:border-b hover:opacity-45 md:py-5"
+      className="group flex w-full cursor-pointer items-baseline justify-between gap-6 border-t border-line px-1 py-4 transition-opacity duration-200 last:border-b hover:opacity-45 sm:px-2 md:gap-10 md:px-3 md:py-5"
       onMouseEnter={() => setModal({ active: true, index })}
       onMouseLeave={() => setModal({ active: false, index })}
     >
-      <h3 className="m-0 font-display text-xl font-medium tracking-tight text-ink transition-transform duration-300 group-hover:translate-x-1.5 md:text-2xl lg:text-[1.75rem]">
-        {title}
-      </h3>
+      <div className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1 transition-transform duration-300 group-hover:translate-x-1.5">
+        <h3 className="m-0 font-display text-xl font-medium tracking-tight text-ink md:text-2xl lg:text-[1.75rem]">
+          {title}
+        </h3>
+        <span className="text-[0.65rem] tracking-[0.14em] text-mocha/50 uppercase md:text-[0.7rem]">
+          {tag}
+        </span>
+      </div>
       <p className="shrink-0 text-right text-[0.7rem] tracking-[0.14em] text-mocha/55 uppercase transition-transform duration-300 group-hover:-translate-x-1.5 md:text-xs">
         {label}
       </p>

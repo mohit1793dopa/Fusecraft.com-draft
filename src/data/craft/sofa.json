@@ -1,0 +1,91 @@
+{
+  "slug": "sofa",
+  "title": "Sofa",
+  "cover": "/images/browse-by-craft/sofa.jpg",
+  "href": "/craft/sofa",
+  "subcategories": [
+    {
+      "slug": "all",
+      "title": "All designs",
+      "designs": [
+        {
+          "slug": "blue-sofa",
+          "title": "Blue Sofa",
+          "main": "/images/craft/sofa/blue-sofa/main.jpg",
+          "images": [
+            "/images/craft/sofa/blue-sofa/main.jpg",
+            "/images/craft/sofa/blue-sofa/01.jpg",
+            "/images/craft/sofa/blue-sofa/02.jpg",
+            "/images/craft/sofa/blue-sofa/03.jpg",
+            "/images/craft/sofa/blue-sofa/04.jpg",
+            "/images/craft/sofa/blue-sofa/05.jpg"
+          ]
+        },
+        {
+          "slug": "extendable-sofa",
+          "title": "Extendable Sofa",
+          "main": "/images/craft/sofa/extendable-sofa/main.jpg",
+          "images": [
+            "/images/craft/sofa/extendable-sofa/main.jpg",
+            "/images/craft/sofa/extendable-sofa/01.jpg"
+          ]
+        },
+        {
+          "slug": "sleek-metal-sofa",
+          "title": "Sleek Metal Sofa",
+          "main": "/images/craft/sofa/sleek-metal-sofa/main.jpg",
+          "images": [
+            "/images/craft/sofa/sleek-metal-sofa/main.jpg",
+            "/images/craft/sofa/sleek-metal-sofa/01.jpg",
+            "/images/craft/sofa/sleek-metal-sofa/02.jpg",
+            "/images/craft/sofa/sleek-metal-sofa/03.jpg",
+            "/images/craft/sofa/sleek-metal-sofa/04.jpg"
+          ]
+        },
+        {
+          "slug": "small-sofa-seating",
+          "title": "Small Sofa Seating",
+          "main": "/images/craft/sofa/small-sofa-seating/main.jpg",
+          "images": [
+            "/images/craft/sofa/small-sofa-seating/main.jpg",
+            "/images/craft/sofa/small-sofa-seating/01.jpg",
+            "/images/craft/sofa/small-sofa-seating/02.jpg",
+            "/images/craft/sofa/small-sofa-seating/03.jpg"
+          ]
+        },
+        {
+          "slug": "sofa-contemp",
+          "title": "Sofa Contemp",
+          "main": "/images/craft/sofa/sofa-contemp/main.jpg",
+          "images": [
+            "/images/craft/sofa/sofa-contemp/main.jpg",
+            "/images/craft/sofa/sofa-contemp/01.jpg"
+          ]
+        },
+        {
+          "slug": "wooden-sofa-with-designer-fabric",
+          "title": "Wooden Sofa With Designer Fabric",
+          "main": "/images/craft/sofa/wooden-sofa-with-designer-fabric/main.jpg",
+          "images": [
+            "/images/craft/sofa/wooden-sofa-with-designer-fabric/main.jpg",
+            "/images/craft/sofa/wooden-sofa-with-designer-fabric/01.jpg",
+            "/images/craft/sofa/wooden-sofa-with-designer-fabric/02.jpg",
+            "/images/craft/sofa/wooden-sofa-with-designer-fabric/03.jpg",
+            "/images/craft/sofa/wooden-sofa-with-designer-fabric/04.jpg",
+            "/images/craft/sofa/wooden-sofa-with-designer-fabric/05.jpg"
+          ]
+        },
+        {
+          "slug": "yellow-sofa",
+          "title": "Yellow Sofa",
+          "main": "/images/craft/sofa/yellow-sofa/main.jpg",
+          "images": [
+            "/images/craft/sofa/yellow-sofa/main.jpg",
+            "/images/craft/sofa/yellow-sofa/01.jpg",
+            "/images/craft/sofa/yellow-sofa/02.jpg"
+          ]
+        }
+      ]
+    }
+  ]
+}

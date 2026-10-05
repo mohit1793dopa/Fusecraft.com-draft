@@ -1,0 +1,34 @@
+{
+  "slug": "partitions",
+  "title": "Partitions",
+  "cover": "/images/browse-by-craft/partitions.jpg",
+  "href": "/craft/partitions",
+  "subcategories": [
+    {
+      "slug": "all",
+      "title": "All designs",
+      "designs": [
+        {
+          "slug": "devghar-partition-2",
+          "title": "Devghar Partition 2",
+          "main": "/images/craft/partitions/devghar-partition-2/main.jpg",
+          "images": [
+            "/images/craft/partitions/devghar-partition-2/main.jpg",
+            "/images/craft/partitions/devghar-partition-2/01.jpg",
+            "/images/craft/partitions/devghar-partition-2/02.jpg"
+          ]
+        },
+        {
+          "slug": "partition1",
+          "title": "Partition1",
+          "main": "/images/craft/partitions/partition1/main.jpg",
+          "images": [
+            "/images/craft/partitions/partition1/main.jpg",
+            "/images/craft/partitions/partition1/01.jpg",
+            "/images/craft/partitions/partition1/02.jpg"
+          ]
+        }
+      ]
+    }
+  ]
+}
