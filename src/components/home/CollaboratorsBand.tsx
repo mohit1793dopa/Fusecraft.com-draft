@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useReducedMotion } from "motion/react";
 import { Reveal } from "@/components/motion/Reveal";
 import { collaborators } from "@/data/site";
@@ -48,14 +47,12 @@ export function CollaboratorsBand() {
             const href = "href" in studio ? studio.href : undefined;
             const card = (
               <>
-                <div className="relative aspect-[4/5] overflow-hidden bg-almond">
-                  <Image
+                <div className="relative flex aspect-[4/5] items-center justify-center overflow-hidden bg-[#fbf8f2] px-5 py-8">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
                     src={studio.image}
                     alt={`${studio.name} logo`}
-                    fill
-                    sizes="240px"
-                    quality={80}
-                    className="object-contain p-6 transition-transform duration-700 group-hover:scale-105"
+                    className="max-h-[78%] w-full object-contain transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
                 <div className="px-3.5 py-3.5 md:px-4 md:py-4">

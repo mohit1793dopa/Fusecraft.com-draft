@@ -1,15 +1,11 @@
 "use client";
 
-import Image from "next/image";
-import {
-  useCallback,
-  useEffect,
-  useId,
-  useRef,
-  useState,
-  type PointerEvent as ReactPointerEvent,
-} from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import {
+  SqueezeCarousel,
+  type SqueezeSlide,
+} from "@/components/ui/carousel-squeeze";
 
 type DesignLightboxProps = {
   open: boolean;
@@ -21,7 +17,16 @@ type DesignLightboxProps = {
   onIndexChange: (index: number) => void;
 };
 
-const SWIPE_THRESHOLD = 56;
+function useMaxCarouselHeight() {
+  const [maxH, setMaxH] = useState(560);
+  useEffect(() => {
+    const update = () => setMaxH(Math.round(window.innerHeight * 0.68));
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+  return maxH;
+}
 
 export function DesignLightbox({
   open,
@@ -37,19 +42,21 @@ export function DesignLightbox({
   const count = images.length;
   const current = images[index] ?? images[0];
   const closeRef = useRef<HTMLButtonElement>(null);
-  const dragStartX = useRef<number | null>(null);
-  const wheelLock = useRef(false);
-  const [direction, setDirection] = useState(0);
-  const [dragX, setDragX] = useState(0);
-  const [dragging, setDragging] = useState(false);
+  const maxCarouselHeight = useMaxCarouselHeight();
 
-  const go = useCallback(
-    (dir: -1 | 1) => {
-      if (count < 2) return;
-      setDirection(dir);
-      onIndexChange((index + dir + count) % count);
-    },
-    [count, index, onIndexChange],
+  const slides: SqueezeSlide[] = useMemo(
+    () =>
+      images.map((src, i) => ({
+        id: `${src}-${i}`,
+        image: src,
+        imageAlt: `${title} — view ${i + 1}`,
+        overlay: (
+          <span className="rounded-full bg-moss-ink/45 px-2.5 py-1 text-[0.62rem] tracking-[0.14em] text-sand/90 uppercase backdrop-blur-sm">
+            {String(i + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
+          </span>
+        ),
+      })),
+    [images, title, count],
   );
 
   useEffect(() => {
@@ -59,86 +66,25 @@ export function DesignLightbox({
         e.preventDefault();
         onClose();
       }
+      if (count < 2) return;
       if (e.key === "ArrowRight") {
         e.preventDefault();
-        go(1);
+        onIndexChange((index + 1) % count);
       }
       if (e.key === "ArrowLeft") {
         e.preventDefault();
-        go(-1);
-      }
-    };
-    const onWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaY) < 24 && Math.abs(e.deltaX) < 24) return;
-      e.preventDefault();
-      if (wheelLock.current) return;
-      wheelLock.current = true;
-      window.setTimeout(() => {
-        wheelLock.current = false;
-      }, 420);
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-        go(e.deltaX > 0 ? 1 : -1);
-      } else {
-        go(e.deltaY > 0 ? 1 : -1);
+        onIndexChange((index - 1 + count) % count);
       }
     };
     window.addEventListener("keydown", onKey);
-    window.addEventListener("wheel", onWheel, { passive: false });
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     closeRef.current?.focus({ preventScroll: true });
     return () => {
       window.removeEventListener("keydown", onKey);
-      window.removeEventListener("wheel", onWheel);
       document.body.style.overflow = prev;
     };
-  }, [open, onClose, go]);
-
-  const onPointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
-    if (e.button !== 0 || count < 2) return;
-    dragStartX.current = e.clientX;
-    setDragging(true);
-    setDragX(0);
-    e.currentTarget.setPointerCapture(e.pointerId);
-  };
-
-  const onPointerMove = (e: ReactPointerEvent<HTMLDivElement>) => {
-    if (dragStartX.current == null) return;
-    setDragX(e.clientX - dragStartX.current);
-  };
-
-  const endDrag = (e: ReactPointerEvent<HTMLDivElement>) => {
-    if (dragStartX.current == null) return;
-    const delta = e.clientX - dragStartX.current;
-    dragStartX.current = null;
-    setDragging(false);
-    setDragX(0);
-    try {
-      e.currentTarget.releasePointerCapture(e.pointerId);
-    } catch {
-      /* already released */
-    }
-    if (Math.abs(delta) < SWIPE_THRESHOLD) return;
-    go(delta < 0 ? 1 : -1);
-  };
-
-  const slideVariants = reduce
-    ? {
-        enter: { opacity: 0 },
-        center: { opacity: 1, x: 0 },
-        exit: { opacity: 0 },
-      }
-    : {
-        enter: (dir: number) => ({
-          x: dir === 0 ? 0 : dir > 0 ? 80 : -80,
-          opacity: 0,
-        }),
-        center: { x: 0, opacity: 1 },
-        exit: (dir: number) => ({
-          x: dir === 0 ? 0 : dir > 0 ? -64 : 64,
-          opacity: 0,
-        }),
-      };
+  }, [open, onClose, onIndexChange, index, count]);
 
   return (
     <AnimatePresence>
@@ -160,14 +106,12 @@ export function DesignLightbox({
             onClick={onClose}
           />
 
-          {/* Ambient glow behind the photo */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-[18%] z-[1] rounded-full bg-almond/10 blur-3xl"
           />
 
-          {/* Top bar */}
-          <div className="relative z-20 flex items-start justify-between gap-4 px-4 pt-4 sm:px-7 sm:pt-6 md:px-10 md:pt-8">
+          <div className="relative z-20 flex items-start justify-between gap-4 px-5 pt-5 sm:px-10 sm:pt-7 md:px-14 md:pt-8 lg:px-20">
             <motion.div
               initial={reduce ? false : { opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -185,13 +129,6 @@ export function DesignLightbox({
               >
                 {title}
               </h2>
-              {count > 1 ? (
-                <p className="mt-2.5 tabular-nums text-[0.7rem] tracking-[0.16em] text-sand/45 uppercase">
-                  {String(index + 1).padStart(2, "0")}
-                  <span className="mx-1.5 text-sand/25">/</span>
-                  {String(count).padStart(2, "0")}
-                </p>
-              ) : null}
             </motion.div>
 
             <button
@@ -219,161 +156,44 @@ export function DesignLightbox({
             </button>
           </div>
 
-          {/* Stage */}
-          <div className="relative z-10 flex min-h-0 flex-1 items-center justify-center px-2 sm:px-6 md:px-20">
-            {count > 1 ? (
-              <>
-                <NavButton
-                  side="left"
-                  label="Previous image"
-                  onClick={() => go(-1)}
-                />
-                <NavButton
-                  side="right"
-                  label="Next image"
-                  onClick={() => go(1)}
-                />
-              </>
-            ) : null}
-
-            <div
-              className="relative mx-auto h-full w-full max-w-6xl touch-pan-y select-none"
-              style={{
-                cursor: dragging ? "grabbing" : count > 1 ? "grab" : "default",
-              }}
-              onPointerDown={onPointerDown}
-              onPointerMove={onPointerMove}
-              onPointerUp={endDrag}
-              onPointerCancel={endDrag}
-            >
-              <AnimatePresence mode="wait" custom={direction} initial={false}>
-                <motion.div
-                  key={current}
-                  custom={direction}
-                  variants={slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{
-                    duration: reduce ? 0.15 : 0.36,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  style={{
-                    x: dragging ? dragX * 0.55 : undefined,
-                    opacity: dragging
-                      ? Math.max(0.55, 1 - Math.abs(dragX) / 420)
-                      : undefined,
-                  }}
-                  className="absolute inset-0 flex items-center justify-center p-1 sm:p-2"
-                >
-                  <div className="relative h-full w-full overflow-hidden rounded-[2px] shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
-                    <Image
-                      src={current}
-                      alt={`${title} — view ${index + 1}`}
-                      fill
-                      sizes="(max-width: 1280px) 100vw, 1152px"
-                      quality={85}
-                      unoptimized
-                      className="object-contain pointer-events-none"
-                      priority
-                      draggable={false}
-                    />
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
-
-          {/* Filmstrip */}
-          {count > 1 ? (
+          {/* More side padding; carousel sized to image ratio */}
+          <div className="relative z-10 flex min-h-0 flex-1 items-center justify-center px-6 pb-8 sm:px-12 sm:pb-10 md:px-20 lg:px-28">
             <motion.div
-              initial={reduce ? false : { opacity: 0, y: 18 }}
+              initial={reduce ? false : { opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.4 }}
-              className="relative z-20 px-4 pb-5 pt-2 sm:px-8 sm:pb-8"
+              transition={{ delay: 0.08, duration: 0.4 }}
+              className="mx-auto w-full max-w-[920px]"
+              onClick={(e) => e.stopPropagation()}
             >
-              <div
-                className="no-scrollbar mx-auto flex w-fit max-w-full gap-2.5 overflow-x-auto px-1 py-1"
-                role="tablist"
-                aria-label="Gallery views"
-              >
-                {images.map((src, i) => {
-                  const active = i === index;
-                  return (
-                    <button
-                      key={src}
-                      type="button"
-                      role="tab"
-                      aria-selected={active}
-                      aria-label={`View ${i + 1}`}
-                      onClick={() => {
-                        if (i === index) return;
-                        setDirection(i > index ? 1 : -1);
-                        onIndexChange(i);
-                      }}
-                      className={`relative h-[3.75rem] w-[5.25rem] shrink-0 overflow-hidden rounded-[4px] transition-all duration-300 sm:h-16 sm:w-[5.75rem] ${
-                        active
-                          ? "opacity-100 ring-2 ring-sand ring-offset-2 ring-offset-[#0e0f0a]"
-                          : "opacity-40 ring-1 ring-white/10 hover:opacity-80"
-                      }`}
-                    >
-                      <Image
-                        src={src}
-                        alt=""
-                        fill
-                        sizes="92px"
-                        unoptimized
-                        className="object-cover"
-                      />
-                    </button>
-                  );
-                })}
-              </div>
+              {count > 1 ? (
+                <SqueezeCarousel
+                  slides={slides}
+                  activeIndex={index}
+                  onActiveChange={onIndexChange}
+                  fitToImage
+                  maxHeight={maxCarouselHeight}
+                  gap={12}
+                  slatWidth={count >= 5 ? 40 : count >= 4 ? 48 : 56}
+                  radius={10}
+                  duration={800}
+                  hoverGrow
+                  autoplay={false}
+                  controls
+                />
+              ) : (
+                <div className="relative mx-auto flex max-h-[min(72vh,640px)] w-full items-center justify-center overflow-hidden rounded-[10px] bg-moss-ink/30 shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={current}
+                    alt={title}
+                    className="max-h-[min(72vh,640px)] w-auto max-w-full object-contain"
+                  />
+                </div>
+              )}
             </motion.div>
-          ) : (
-            <div className="relative z-20 h-8" />
-          )}
+          </div>
         </motion.div>
       ) : null}
     </AnimatePresence>
-  );
-}
-
-function NavButton({
-  side,
-  label,
-  onClick,
-}: {
-  side: "left" | "right";
-  label: string;
-  onClick: () => void;
-}) {
-  const isLeft = side === "left";
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      onClick={onClick}
-      className={`absolute top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-sand/95 text-ink shadow-[0_10px_30px_rgba(0,0,0,0.35)] transition hover:bg-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-almond md:h-14 md:w-14 ${
-        isLeft ? "left-1 sm:left-3 md:left-4" : "right-1 sm:right-3 md:right-4"
-      }`}
-    >
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 22 22"
-        fill="none"
-        aria-hidden
-        className={isLeft ? "" : "rotate-180"}
-      >
-        <path
-          d="M13.5 5.5L8 11l5.5 5.5"
-          stroke="currentColor"
-          strokeWidth="1.7"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </button>
   );
 }

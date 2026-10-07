@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { Reveal } from "@/components/motion/Reveal";
+import { CraftInteractiveHero } from "@/components/craft/CraftInteractiveHero";
 import { DesignLightbox } from "@/components/craft/DesignLightbox";
 import type { CraftCategory } from "@/data/craft-portfolio";
 
@@ -14,6 +15,16 @@ type Props = {
   category: CraftCategory;
   others: OtherCategory[];
 };
+
+/** Chairs first — one main image per design for the cursor trail */
+function trailImagesForCategory(category: CraftCategory) {
+  return category.subcategories.flatMap((section) =>
+    section.designs.map((design) => ({
+      src: design.main,
+      alt: design.title,
+    })),
+  );
+}
 
 export function CraftCategoryView({ category, others }: Props) {
   const reduce = useReducedMotion();
@@ -35,60 +46,91 @@ export function CraftCategoryView({ category, others }: Props) {
     0,
   );
 
+  const isChairsHero = category.slug === "chairs";
+  const trailImages = useMemo(
+    () => (isChairsHero ? trailImagesForCategory(category) : []),
+    [category, isChairsHero],
+  );
+
   return (
     <main className="bg-cream">
-      <section className="relative overflow-hidden">
-        <div className="relative mx-auto grid max-w-[1440px] gap-8 px-6 pt-28 pb-10 sm:px-8 md:grid-cols-[1.1fr_0.9fr] md:px-12 md:pt-36 md:pb-14 lg:px-16">
-          <Reveal>
-            <p className="eyebrow text-mocha">Collection</p>
-            <h1 className="type-headline mt-3 text-4xl md:text-5xl lg:text-6xl">
-              {category.title}
-            </h1>
-            <p className="type-body mt-4 max-w-md text-base text-mocha/80">
-              {total} design{total === 1 ? "" : "s"} from the workshop — open
-              any piece to browse its views.
-            </p>
-            <Link
-              href="/#selected-work"
-              className="btn-ghost mt-6 inline-flex text-chestnut"
-            >
-              ‹ All collections
-            </Link>
-          </Reveal>
+      {isChairsHero ? (
+        <CraftInteractiveHero
+          title="Chairs"
+          eyebrow="Collection"
+          headline="Seating built for how the room is used."
+          subtext={`${total} designs across dining, lounge, and benches.`}
+          ctaLabel="Browse designs"
+          ctaHref="#dining-and-cafe-chairs"
+          secondaryLabel="‹ All collections"
+          secondaryHref="/#selected-work"
+          trailImages={trailImages}
+          hint="Move across the page — designs trail behind your cursor."
+        />
+      ) : (
+        <section className="relative overflow-hidden">
+          <div className="relative mx-auto grid max-w-[1440px] gap-8 px-6 pt-28 pb-10 sm:px-8 md:grid-cols-[1.1fr_0.9fr] md:px-12 md:pt-36 md:pb-14 lg:px-16">
+            <Reveal>
+              <p className="eyebrow text-mocha">Collection</p>
+              <h1 className="type-headline mt-3 text-4xl md:text-5xl lg:text-6xl">
+                {category.title}
+              </h1>
+              <p className="type-body mt-4 max-w-md text-base text-mocha/80">
+                {total} design{total === 1 ? "" : "s"} from the workshop — open
+                any piece to browse its views.
+              </p>
+              <Link
+                href="/#selected-work"
+                className="btn-ghost mt-6 inline-flex text-chestnut"
+              >
+                ‹ All collections
+              </Link>
+            </Reveal>
 
-          <Reveal delay={0.08}>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[24px] bg-almond md:aspect-[5/4]">
-              <Image
-                src={category.cover}
-                alt={category.title}
-                fill
-                priority
-                sizes="(max-width: 768px) 100vw, 45vw"
-                quality={75}
-                unoptimized
-                className="object-cover"
-              />
-            </div>
-          </Reveal>
-        </div>
-      </section>
+            <Reveal delay={0.08}>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[24px] bg-almond md:aspect-[5/4]">
+                <Image
+                  src={category.cover}
+                  alt={category.title}
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 45vw"
+                  quality={75}
+                  unoptimized
+                  className="object-cover"
+                />
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {category.subcategories.length > 1 ? (
-        <div className="sticky top-20 z-30 border-y border-line bg-cream/90 backdrop-blur-md">
-          <div className="no-scrollbar mx-auto flex max-w-[1440px] gap-2 overflow-x-auto px-6 py-3 sm:px-8 md:px-12 lg:px-16">
-            <Chip
-              active={filter === "all"}
-              onClick={() => setFilter("all")}
-              label="All"
-            />
-            {category.subcategories.map((s) => (
-              <Chip
-                key={s.slug}
-                active={filter === s.slug}
-                onClick={() => setFilter(s.slug)}
-                label={s.title}
+        <div className="sticky top-[4.125rem] z-40 px-4 sm:px-6 md:top-[calc(6.05rem+4px)] md:px-8">
+          <div className="mx-auto flex max-w-[760px] justify-center">
+            <div
+              role="tablist"
+              aria-label="Filter by type"
+              className="no-scrollbar relative flex w-full max-w-full gap-1 overflow-x-auto rounded-full border border-white/65 bg-white/50 px-1 py-1 shadow-[0_8px_32px_rgba(29,30,18,0.1),inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-2xl"
+            >
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-br from-white/45 via-transparent to-almond/20"
               />
-            ))}
+              <Chip
+                active={filter === "all"}
+                onClick={() => setFilter("all")}
+                label="All"
+              />
+              {category.subcategories.map((s) => (
+                <Chip
+                  key={s.slug}
+                  active={filter === s.slug}
+                  onClick={() => setFilter(s.slug)}
+                  label={s.title}
+                />
+              ))}
+            </div>
           </div>
         </div>
       ) : null}
@@ -201,11 +243,13 @@ function Chip({
   return (
     <button
       type="button"
+      role="tab"
+      aria-selected={active}
       onClick={onClick}
-      className={`shrink-0 rounded-full px-4 py-2 text-[0.65rem] tracking-[0.12em] uppercase transition ${
+      className={`relative z-10 shrink-0 rounded-full px-3.5 py-2 text-[0.62rem] tracking-[0.12em] uppercase transition duration-300 sm:px-4 ${
         active
-          ? "bg-ink text-cream"
-          : "bg-sand text-mocha ring-1 ring-line hover:bg-almond hover:text-ink"
+          ? "bg-moss-ink text-sand shadow-[0_4px_14px_rgba(29,30,18,0.2)]"
+          : "text-mocha hover:bg-white/55 hover:text-ink"
       }`}
     >
       {label}
